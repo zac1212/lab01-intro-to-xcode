@@ -25,6 +25,8 @@ Make sure you sign up for the education pack (you get unlimitied private
 repositories for free while you're a student). If you don't want to do use 
 github then let the lecturers know.
 
+## Optional Steps
+
 If you're able to create private repos, then do the following:
 
 1. Create a `lab01-intro-to-xcode` repo in your GitHub account
