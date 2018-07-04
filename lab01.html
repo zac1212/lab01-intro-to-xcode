@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>COSC346 Lab Week 1 - Xcode and Swift</title>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+
+		<link rel="stylesheet" type="text/css" href="http://cs.otago.ac.nz/cosc346/labs/phplabbook/labbookswift.css">
+		<link rel="stylesheet" type="text/css" href="http://cs.otago.ac.nz/cosc346/labs/cosc346labstyle.css">
+
+		<script src="http://cs.otago.ac.nz/cosc346/labs/jquery-1.11.1.min.js"></script>
+		<script src="http://cs.otago.ac.nz/cosc346/labs/toc.min.js"></script>
+		<script src="http://cs.otago.ac.nz/cosc346/labs/cosc346labscript.js"></script>
+	</head>
+	<body>
+		<div class="banner">
+			<a href="http://cs.otago.ac.nz/cosc346/labs.php">COSC346 - Object Oriented Programming and User Interfaces</a>
+		</div>
+
+		<h1>Week 1 - Xcode and Swift</h1>
+		<div id="toc"></div>
+		<h2>Goals</h2>
+		<div class="block">
+			<ul class="toplist">
+				<li>Fork this git repository and clone the copy to your local machine for development (see: <a href="https://help.github.com/articles/fork-a-repo/">https://help.github.com/articles/fork-a-repo/</a>)</li>
+				<li>Familiarise yourself with the Xcode development environment.</li>
+				<li>Create an Xcode project.</li>
+				<li>Write a Swift program.</li>
+				<li>Debug a Swift program.</li>
+				<li>Commit the changes to the repository.</li>
+			</ul>
+		</div>
+		<h2>Preparation</h2>
+		<div class="block">
+			<ul class="toplist">
+				<li>Take a good look at <a href="resources/Xcode_Overview.pdf">Xcode Overview</a> (for an old Xcode version, but still helpful)</li>
+				<li>Watch Apple's <a href="http://devstreaming.apple.com/videos/wwdc/2014/402xxgg8o88ulsr/402/402_hd_introduction_to_swift.mov?dl=1">Introduction to Swift</a> (Safari only)
+				</li>
+				<li>From Apple's "The Swift Programming Language" read:
+					<ul>
+						<li><a href="https://developer.apple.com/library/ios/documentation/Swift/Conceptual/Swift_Programming_Language/index.html#//apple_ref/doc/uid/TP40014097-CH3-ID0">About Swift</a>
+						</li>
+						<li><a href="https://developer.apple.com/library/ios/documentation/Swift/Conceptual/Swift_Programming_Language/GuidedTour.html#//apple_ref/doc/uid/TP40014097-CH2-ID1">A Swift Tour</a>
+						</li>
+						<li><a href="https://developer.apple.com/library/ios/documentation/Swift/Conceptual/Swift_Programming_Language/TheBasics.html#//apple_ref/doc/uid/TP40014097-CH5-ID309">The Basics</a>
+						</li>
+					</ul>
+				</li>
+				
+				<li>From Manning et al. <a href="http://shop.oreilly.com/product/0636920034285.do">"Swift development with Cocoa"</a> read:
+					<ul>
+						<li>"Creating Your First Project with Xcode", pg. 4-12</li>
+						<li>"Programming with Swift", pg. 21-34</li>
+					</ul>
+				</li>
+			</ul>
+		</div>
+		
+		<div class="note">
+		<img src="images/note.png" style="width:64px;max-width:64px">
+
+		<p>These labs are to be viewed from the browser.  If you find the provided screenshots too small or too large,
+			resize the width of the browser window to scale the images accordingly.</p>
+
+		<p>The code provided can be easily copied to clipboard and pasted into Xcode.  You can also get the contents of
+			the entire file by clicking on the file name on the top of the code window.  However, unless instructed
+			otherwise, you're strongly encouraged to type it out yourself.  Copying and pasting will shorten your lab
+			time, but it will also reduce the benefit of the exercise.</p>
+		
+		<p>Labs are not assessed, the two assignments are.  If you take your time and do the labs properly you'll have a
+			much easier time with your assignments.</p>
+		</div>
+
+		
+		
+		<h2>Introduction to Xcode</h2>
+		<div class="block">
+		</div>
+		<h3>Overview</h3>
+		<div class="block">
+
+			<p>
+			Xcode is Apple’s Integrated Development Environment (IDE).  It is available for free from the App store.
+				Xcode is very helpful for developing Swift, and essential for developing OS X applications.  In this
+				lab you will learn the basic features of Xcode 9.x.
+			</p>
+	
+			<p>
+			Spend some time reading <a href="resources/Xcode_Overview.pdf">about Xcode</a>.  Familiarise yourself with
+				the layout of Xcode, including the Navigator, Editor, Debugger, and Utility areas.  Read about how to
+				split views among these four areas.  Read about the contextual help and how to use the jump bars.
+			</p>
+		</div>
+
+		<h3>Start a new project</h3>
+		<div class="block">
+			<p>
+			In the first part of this course (OOP), we will be learning Swift by creating command line tools.  In the
+				second part of the course (UI), we will be learning UI programming by creating OS X applications.
+			</p>
+	
+			<p style="margin-top: 2em;">
+			Start Xcode by clicking on the <img class="intext" src="images/xcode.png" style="width:64px;height:64px"> icon in the Dock.
+				The launcher screen will appear, where you can create a new project (or find a shortcut to a recent one
+				you've worked on before).
+			</p>
+
+			<img class="block" src="images/screen01.png" style="max-width:836px;max-height:504px" title="Xcode launcher screen">
+
+			<p>
+			You can create a new project by choosing <em>Create a new Xcode project</em>, or from the File menu by
+				selecting <em>New -> Project</em>.  To create a command line tool, select <em>Command Line Tool</em>
+				template from the <em>OS X->Application</em> group.
+			</p>
+
+            <img class="block" src="images/screen02.png" style="max-width:732px;max-height:442px" title="Xcode new project template screen">
+
+			<p>
+			After clicking <em>Next</em>, set "prog1.1" as the <em>Product Name</em>, and whatever you like for the
+				<em>Organization name</em> and <em>Company Identifier</em>.  Make sure that the Language option is set
+				to <em>Swift</em>.
+			</p>
+
+            <img class="block" src="images/screen03.png" style="max-width:740px;max-height:440px" title="Xcode new project options screen">
+				
+			<p>
+			Save the project to the (local) directory containing these instructions. Make sure that you uncheck the
+				<em>Create Git repository</em> option (as this will create a new repository inside the directory --
+				useful if you're starting from scratch but we're not).
+			</p>
+			
+			<!--<div class="note">
+			<img src="images/note.png" style="width:64px;max:64px">
+			Version control.
+			</div>			
+			-->
+			
+			<p>
+			When you click <em>Create</em> you will see the build settings for your new program.  These are used to
+				select the architecture/compiler/debugger that you want to use in your project.  We won’t be changing
+				the default build settings, but it’s nice to know how to do it if necessary.
+			</p>
+
+			 <img class="block" src="images/screen04.png" style="max-width:1269px;max-height:1018px" title="Xcode project options screen">
+
+		<h3>Your first Swift program</h3>
+		<div class="block">
+
+			<p>
+			Familiarise yourself with different areas of the Xcode window (show in the image below).  Use the
+				navigator (on the left side of Xcode) to find <em>main.swift</em>, which contains a ready-made
+				"Hello World" program.  If you you don’t see the Debug console, select
+				<em>View->Debug Area->Activate Console</em> from the menu to display it.  This is a good time to try
+				out the various view buttons in Xcode to get a feel for how they work and how you can change the
+				environment to suit your needs.
+			</p>
+	
+			<img class="block" src="images/screen05.png" style="max-width:1269px;max-height:1018px" title="Xcode workspace">
+  
+			<p>
+			Now click the <em>Run</em> triangle near the upper left of Xcode to build your project.  Be patient while
+				the program compiles (sometimes Xcode likes to take its time while compiling - you can monitor this
+				progress in the status windows in the toolbar).  Once compilation finishes, the program will run and
+				you should see its output on the right-hand side of the debugger area.
+			</p>
+
+			<img class="block" src="images/screen06.png" style="max-width:1269px;max-height:1018px" title="Swift program output">
+  
+
+			<p>
+			Let's write a new Swift program.  All the code for your first program is given below, but you're
+				encouraged to type it all out yourself - it's not all that much to type if you skip all the comments.
+			<p>
+			
+			<div class="codeblock">
+<div class="codeblocktitle"><a href="code/01/main.swift">main.swift</a></div>
+<pre class="code">
+<span class="swiftcode"><span class="swiftkeyword">import</span> Foundation</span>
+
+<span class="swiftcomment">/*
+ * Checks a word for emoji match and returns
+ * corresponding unicode.  If no emoji match found,
+ * the word string is returned unchanged.
+ *
+ * @param: word - string to match with emoji
+ *
+ * @return: String - utf code for matched emoji
+ *                   or the original string
+ */</span>
+<span class="swiftkeyword">func</span> emojicode(word: <span class="swiftclass">String</span>) -&gt <span class="swiftclass">String</span> {
+
+    <span class="swiftcomment">// Convert the characters in the string</span>
+    <span class="swiftcomment">// to lowercase and check for emoji match</span>
+    <span class="swiftkeyword">switch</span> word.lowercased() {
+
+    <span class="swiftkeyword">case</span> <span class="swiftstring">"beer"</span>:
+        <span class="swiftkeyword">return</span> <span class="swiftstring">"\u{1F37A}"</span>
+
+    <span class="swiftkeyword">case</span> <span class="swiftstring">"television"</span>, <span class="swiftstring">"tv"</span>:
+        <span class="swiftkeyword">return</span> <span class="swiftstring">"\u{1F4FA}"</span>
+
+        <span class="swiftcomment">// Switch statements must cover all the cases,</span>
+        <span class="swiftcomment">// the default case is taken when no other</span>
+    	<span class="swiftcomment">// cases match</span>
+    <span class="swiftkeyword">default</span>:
+        <span class="swiftkeyword">return</span> word
+    }
+}
+
+<span class="swiftcomment">/*
+ * Prints a string replacing matched words with
+ * corresponding emoji
+ *
+ * @param: str - display
+ *
+ * @return: String - argument string with some words replaced
+ *                   with utf code for corresponding emojis
+ */</span>
+<span class="swiftkeyword">func</span> emojiate(str: <span class="swiftclass">String</span>) -&gt <span class="swiftclass">String</span> {
+    <span class="swiftcomment">// Break the string into separate</span>
+    <span class="swiftcomment">// word tokens.  Start with the empty token</span>
+    <span class="swiftkeyword">var</span> word: <span class="swiftclass">String</span> = <span class="swiftstring">""</span>
+    <span class="swiftkeyword">var</span> result: <span class="swiftclass">String</span> = <span class="swiftstring">""</span>
+    
+    <span class="swiftcomment">// Iterate over every character in the string</span>
+    <span class="swiftkeyword">for</span> char: <span class="swiftclass">Character</span> <span class="swiftkeyword">in</span> str {
+        
+        <span class="swiftcomment">// Check the character...</span>
+        <span class="swiftkeyword">if</span>(<span class="swiftclass">String</span>(char) &gt= <span class="swiftstring">"A"</span> && <span class="swiftclass">String</span>(char) &lt= <span class="swiftstring">"z"</span>) {
+            <span class="swiftcomment">// If the next character is a letter, add it</span>
+            <span class="swiftcomment">// to the word token</span>
+            word.append(char)
+        } <span class="swiftkeyword">else</span> {
+
+            <span class="swiftcomment">// If the next character is not a letter,</span>
+            <span class="swiftcomment">// try to convert the last word token</span>
+            <span class="swiftcomment">// to emoji and add it to result string</span>
+            <span class="swiftcomment">// (in swift addition operator concatenates</span>
+            <span class="swiftcomment">// string)</span>
+            result += emojicode(word: word)
+
+            <span class="swiftcomment">// Add the current non-letter character to</span>
+            <span class="swiftcomment">// the result (swift doesn't allow addition</span>
+            <span class="swiftcomment">// of Character to String, so use append</span>
+            <span class="swiftcomment">// method of String to concatenate a Character)</span>
+            result.append(char)
+
+            <span class="swiftcomment">// Clear the word token</span>
+            word = <span class="swiftstring">""</span>
+        }
+    }
+    <span class="swiftcomment">// Add the last word token to the result string</span>
+    <span class="swiftcomment">// (matching it with emoji if possible)</span>
+    result += emojicode(word: word)
+    
+    <span class="swiftcomment">// Return the resulting string</span>
+    <span class="swiftkeyword">return</span> result
+}
+
+<span class="swiftcomment">// Define a string constant</span>
+<span class="swiftkeyword">let</span> myString = <span class="swiftstring">"No TV and no beer make Homer something something."</span>
+
+<span class="swiftcomment">// Convert it to emoji string</span>
+<span class="swiftkeyword">let</span> emojiString = emojiate(str: myString);
+
+<span class="swiftcomment">// Print the emojiString</span>
+<span class="swiftfunc">print</span>(emojiString)
+</pre></div>
+	
+			<p>
+			As you type, Xcode will not only autocomplete (using the tab) your variable names and classes that you
+				want, but it will highlight any potential problems that it notices (on the left hand side of the
+				editor).  Warnings are noted with a yellow triangle and errors are noted with a red stop sign.  If
+				you click on the triangle or stop sign, the warning/error will be displayed for you.  For instance,
+				in the screenshot below, the return statement from <em>emojiate</em> function has been commented out.
+				Since the function signature specifies it should return a
+				<span class="codeline"><span class="codeclass">String</span></span>, Xcode will display an error
+				message, which gives clue to why the program won't compile.</p>
+
+
+			<img class="block" src="images/screen07.png" style="max-width:1187px;max-height:800px" title="Swift program output">
+
+			<p>
+			Make sure you understand how the program works.  Here's a general description of what is going on.
+				Function <em><span class="codeline">emojicode(<span class="codeclass">String</span>) -&gt
+				<span class="codeclass">String</span></span></em> takes a string a an argument and checks for match
+				with a set of keywords, for which UTF emoji codes are provided.  In the above program there are only
+				two emojis that match three keywords.  If a match is found, the function returns a string with
+				corresponding UTF code, otherwise the original string is returned.  Function
+				<em><span class="codeline">emojiate(<span class="codeclass">String</span>) -&gt
+					<span class="codeclass">String</span></span></em> parses its argument string into separate word
+				tokens and replaces each with the result of
+				<em><span class="codeline">emojicode(<span class="codeclass">String</span>) -&gt
+					<span class="codeclass">String</span></span></em>.  A the end it returns the emojiated string.
+				The main program, below the two functions, defines a constant string, and then uses the
+				<em><span class="codeline">emojiate(<span class="codeclass">String</span>) -&gt
+					<span class="codeclass">String</span></span></em> function to create an emoji version of that
+				string.  The resulting string is sent to the output at the end.  Run the program to see the result.
+			</p>
+			
+			<p>
+			Try to modify and expand this program.  If you'd like to add more emoji keywords, you can find a table of
+				UTF8 codes <a href="http://apps.timwhitlock.info/emoji/tables/unicode">here</a>.  Try to
+				<em>emojiate</em> different strings.  Have fun.
+			</p>
+			
+		</div>
+		<h3>Debugging</h3>
+		<div class="block">
+			<p>
+			In case the warning/errors provided in the editor are not enough, Xcode supports a debugger called lldb
+				(it's Apple's version of gdb).  Lldb allows you to step through your code as it is executed.  To
+				accessed the debugger you need to set a breakpoint (or breakpoints) in your code, where you wish the
+				program to pause.  You'll be able ton examine the values of your variables at that point of execution.
+				Breakpoints can be set by clicking on the left hand side of the editor, on the line where you wish the
+				execution to pause.  In the screenshot below, a breakpoint has been placed on line 77 (if you'd like
+				Xcode to display line numbers, set the <em>Preferences->Text Editing->Show Line Numbers</em> option
+				in <em>Xcode</em> menu).  Now, if you run your program, its execution will be paused exactly there.
+				In the debugger window, on the left, you can see the values of all the variables at that moment.  You
+				can let the program continue, or step through line by line, step in and out of individual functions by
+				using the buttons in the debugger menu (marked in the screenshot below).
+			</p>
+
+
+			<img class="block" src="images/screen08.png" style="max-width:1187px;max-height:800px" title="Swift program output">
+
+			<p>
+			Press the continue button in the debugger menu.  The program will run and stop again at the same line (if
+				you haven't disabled the breakpoint), except it will be at a different iteration of the loop - you can
+				tell by different values of the variables.
+
+			<img class="block" src="images/screen09.png" style="max-width:1187px;max-height:800px" title="Swift program output">
+
+			To disable a breakpoint just click on it (it will fade a bit to show that it's been disabled).  You can
+				remove a breakpoint completely by right-clicking and selecting <em>Delete Breakpoint</em>.
+
+		</div>
+		
+		<h3>Playgrounds</h3>
+		<div class="block">
+
+		<p>		
+		Xcode provides another means of developing your program, using a feature called <em>playground</em>. A
+			<em>playground</em> is a project workspace, where the code is compiled and evaluated as you type.  This is
+			different to the standard project, where the editor does some pre-processing to detect syntax
+			inconsistencies, but the code is not complied, nor run, until you hit the run button. In a playground, the
+			code is compiled and run as you type it...and the results are shown immediately.
+		</p>
+
+			<p>
+				To create a new playground, from the menu select <em>File->New->Playground</em>. In the dialog window
+				that comes up, give your playground project a name, such as "playground1.1". Make sure to select <em>OS
+				X</em> as the <em>Platform</em>. Click <em>Next</em> to create the new project.
+			</p>
+
+			<p>Copy and paste the emojiate program into the playground editor. If you stop typing/pasting and wait, the
+				code will be automatically compiled. Since you just dropped a lot of code all at once, it may take some
+				time. In the end you should see the state of program variables on the right-hand side at various stage
+				of execution (as shown in the screenshot below).
+			</p>
+
+			<img class="block" src="images/screen10.png" style="max-width:912px;max-height:884px"
+				 title="Xcode playground editor">
+
+
+			<p>
+				Most of the labs in this course will not use playground projects, but you might find playgrounds useful
+				as a test bed for learning, experimenting and testing your code.
+			</p>
+
+		</div>
+
+			<h3>Committing the changes</h3>
+			<div class="block">
+				<p>At the beginning of the lab you created a fork of the main repository. This created your own personal
+					copy of the repo on GitHub, you then cloned it to your desktop. Now that we've made some changes we
+					need to commit them first to your local repository, and then push the changes to the remote.</p>
+
+				<p>Xcode gives you a hint as to what files have changed. In the screenshot below, you'll see an 'M' next
+					to
+					your prog1.1 project (where 'M' means Modified) and an 'A' next to your main.swift (where 'A' means
+					Added).</p>
+
+				<img class="block" src="images/screen11.png" style="max-width:453px;max-height:286px"
+					 title="Xcode and git">
+
+				<p>The first thing we're going to do is to commit the project. Right click on the prog1.1 and select the
+					<em>Source Control -> Commit Changes</em> option from the drop down. You'll be asked to enter a
+					commit message -- so
+					enter something useful. Don't tick the 'push to remote' option yet.</p>
+
+				<!-- <img class="block" src="images/screen12.png" style="max-width:659px;max-height:613px" title="Committing changes to the project"> -->
+
+				<img class="block" src="images/screen13.png" style="max-width:1187px;max-height:800px"
+					 title="Project commit message">
+
+				<p>Now that the project has been committed, we need to make sure that the source code's changes are
+					saved. Follow the same steps as above but this time enable the 'push to remote' option.</p>
+
+				<img class="block" src="images/screen14.png" style="max-width:1187px;max-height:800px"
+					 title="Committing changes to the source code">
+
+				<p>Once these changes have been pushed, have a look at your repository on GitHub, and you should see the
+					project and source code there.</p>
+
+				<img class="block" src="images/screen15.png" style="max-width:1000px;max-height:605px"
+					 title="GitHub's recorded changes">
+
+			</div>
+
+	</body>
+</html>
