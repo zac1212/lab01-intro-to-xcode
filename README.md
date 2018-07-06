@@ -22,12 +22,11 @@ If you are having problems with the `git` commands, refer to the following links
 * https://guides.github.com
 
 Make sure you sign up for the education pack (you get unlimitied private 
-repositories for free while you're a student). If you don't want to do use 
-github then let the lecturers know.
+repositories for free while you're a student).
 
 ## Optional Steps
 
-If you're able to create private repos, then do the following:
+If you're able to create private repos in GitHub then do the following:
 
 1. Create a `lab01-intro-to-xcode` repo in your GitHub account
 2. Run `git remote set-url origin <new repo uri>`
